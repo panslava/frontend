@@ -36,6 +36,7 @@
     overflow:hidden;
     background-size: contain
 }
+
 .image img {
     width:100%;
 }
@@ -60,6 +61,10 @@
     visibility:hidden;
     margin-top: auto;
     align-self: flex-end;
+}
+
+.notes:hover .actions {
+    visibility: visible;
 }
 /*
 .actionsOverlay:hover * {
@@ -89,7 +94,7 @@
 }
 
 @media (max-width: 768px) {
-    
+
     .main {
         padding: 1.3rem;
     }
