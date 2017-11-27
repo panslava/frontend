@@ -1,51 +1,43 @@
-const $applyButtonPrior = document.getElementById("applyButtonPrior");
-const $applyButtonCommon = document.getElementById("applyButtonCommon");
+function addNewNote (inputNoteContainer) {
+    let newNote = makeNewNote(inputNoteContainer);
+    if (inputNoteContainer.groupName === undefined) {
+        inputNoteContainer.groupName = "Common";
+    }
+    inputNoteContainer.$group = NewNoteContainer[inputNoteContainer.groupName].$group;
+    inputNoteContainer.colorNumber = NewNoteContainer[inputNoteContainer.groupName].colorNumber;
+    newNote.classList.add(colors[inputNoteContainer.colorNumber]);
+    inputNoteContainer.$group.insertBefore(newNote, inputNoteContainer.$group.children[1]);
+    
+    NewNoteContainer[inputNoteContainer.groupName].colorNumber++;
+    NewNoteContainer[inputNoteContainer.groupName].colorNumber %= colors.length;
+}
 
-$applyButtonPrior.addEventListener('click', function () { 
-    if (($addPriorHeader.value.length + $addPriorText.value.length) > 0) {
-        let note_obj = new Object();
-        if ($addPriorHeader.value.length > 0) note_obj.header = $addPriorHeader.value;
-        if ($addPriorText.value.length > 0) note_obj.text = $addPriorText.value;
-        console.log(note_obj);
-        let newNote = makeNewNote(note_obj);
-        newNote.group = 'priority';
-        newNote.classList.add(colors[colorNumber]);
-        priority.insertBefore(newNote,priority.nextSubling);
-        $applyButtonPrior.style.visibility='hidden';
-        $addPriorNote.classList.remove(colors[colorNumber]);
-        $addPriorHeader.classList.remove(colors[colorNumber]);
-        $addPriorHeader.value='';
-        $addPriorText.classList.remove(colors[colorNumber]);
-        $addPriorText.value='';
-        colorNumber++;
-        colorNumber %= colors.length;
-    } 
+NewNoteContainer.Prior.$button.addEventListener('click', function () {
+    let addingData = getDataFromContainer(NewNoteContainer.Prior);
+    NewNoteContainer.Prior.$button.style.visibility="hidden";
+    NewNoteContainer.Prior.$note.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
+    NewNoteContainer.Prior.$header.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
+    NewNoteContainer.Prior.$text.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
+    addNewNote(addingData);
+    NewNoteContainer.Prior.$header.value = "";
+    NewNoteContainer.Prior.$text.value = "";
 })
 
-$applyButtonCommon.addEventListener('click', function () { 
-    if (($addCommonHeader.value.length + $addCommonText.value.length) > 0) {
-        let note_obj = new Object();
-        if ($addCommonHeader.value.length > 0) note_obj.header = $addCommonHeader.value;
-        if ($addCommonText.value.length > 0) note_obj.text = $addCommonText.value;
-        console.log(note_obj);
-        let newNote = makeNewNote(note_obj);
-        newNote.group = 'normal';
-        newNote.classList.add(colors[colorNumber]);
-        normal.appendChild(newNote);
-        $applyButtonCommon.style.visibility='hidden';
-        $addCommonNote.classList.remove(colors[colorNumber]);
-        $addCommonHeader.classList.remove(colors[colorNumber]);
-        $addCommonText.classList.remove(colors[colorNumber]);
-        colorNumber++;
-        colorNumber %= colors.length;
-    } 
+NewNoteContainer.Common.$button.addEventListener('click', function () { 
+    let addingData = getDataFromContainer(NewNoteContainer.Common);
+    NewNoteContainer.Common.$button.style.visibility="hidden";
+    NewNoteContainer.Common.$note.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
+    NewNoteContainer.Common.$header.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
+    NewNoteContainer.Common.$text.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
+    addNewNote(addingData);
+    NewNoteContainer.Common.$header.value = "";
+    NewNoteContainer.Common.$text.value = "";
 })
 
 function makeNewNote(note_obj) {
-
+    console.log(note_obj);
     let note = document.createElement('div');
     note.classList.add('notes');
-   // note.classList.add(note_obj.color);
 
     let contentOverlay = document.createElement('div');
     contentOverlay.classList.add('contentOverlay');
@@ -82,3 +74,26 @@ function makeNewNote(note_obj) {
     return note;
 }
 
+function getDataFromContainer (newNoteContainer) {
+    let data = new Object();
+    data.header = newNoteContainer.$header.value;
+    data.text = newNoteContainer.$text.value;
+    data.groupName = newNoteContainer.groupName;
+    return data;
+}
+
+NewNoteContainer.Prior.$header.addEventListener('input', function() {
+    setStyle(NewNoteContainer.Prior);
+})
+
+NewNoteContainer.Prior.$text.addEventListener('input', function() {
+    setStyle(NewNoteContainer.Prior);
+})
+
+NewNoteContainer.Common.$header.addEventListener('input', function() {
+    setStyle(NewNoteContainer.Common);
+})
+
+NewNoteContainer.Common.$text.addEventListener('input', function() {
+    setStyle(NewNoteContainer.Common);
+})

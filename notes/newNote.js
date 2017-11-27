@@ -38,10 +38,6 @@ function makeNote(note_obj) {
     return note;
 }
 
-let main = document.querySelector('.main');
-let priority = document.querySelector('.priority');
-let normal = document.querySelector('.normal');
-
 for (let note of data) {
     if (note.group=='priority') priority.appendChild(makeNote(note))
     else normal.appendChild(makeNote(note));

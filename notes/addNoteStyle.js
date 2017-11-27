@@ -1,60 +1,68 @@
-const $addPriorHeader = document.getElementById("addPriorHeader");
-const $addPriorText = document.getElementById("addPriorText");
-const $addCommonHeader = document.getElementById("addCommonHeader");
-const $addCommonText = document.getElementById("addCommonText");
-const $addPriorNote = document.getElementById("addPriorNote");
-const $addCommonNote = document.getElementById("addCommonNote");
+class AddContainer {
+    constructor (note, header, text, button, group, colorNumber, groupName) {
+        this.$note = note;
+        this.$header = header;
+        this.$text = text;
+        this.$button = button;
+        this.$group = group;
+        this.colorNumber = colorNumber;
+        this.groupName = groupName;
+    }
+}
 
-var colorNumber=0;
+var NewNoteContainer = new Object();
+
+NewNoteContainer.Prior = new AddContainer(
+    document.getElementById("addPriorNote"),
+    document.getElementById("addPriorHeader"),
+    document.getElementById("addPriorText"),
+    document.getElementById("applyButtonPrior"),
+    document.querySelector('.priority'),
+    0,
+    "Prior"
+);
+
+NewNoteContainer.Common = new AddContainer(
+    document.getElementById("addCommonNote"),
+    document.getElementById("addCommonHeader"),
+    document.getElementById("addCommonText"),
+    document.getElementById("applyButtonCommon"),
+    document.querySelector('.normal'),
+    0,
+    "Common"
+);
+
 var colors = ['red','orange','yellow','lightgreen','blue','pink'];
 
-function setStyle (addNoteContent) {
-    auto_grow(addNoteContent.header);
-    auto_grow(addNoteContent.text);
-    if (addNoteContent.text.value.length + addNoteContent.header.value.length>0) {
-        addNoteContent.button.style.visibility='visible';
-        addNoteContent.note.classList.add(colors[colorNumber]);
-        addNoteContent.header.classList.add(colors[colorNumber]);
-        addNoteContent.text.classList.add(colors[colorNumber]);
+function setStyle (newNoteContainer) {
+    auto_grow(newNoteContainer.$header);
+    auto_grow(newNoteContainer.$text);
+    if (newNoteContainer.$text.value.length + newNoteContainer.$header.value.length>0) {
+        newNoteContainer.$button.style.visibility='visible';
+        newNoteContainer.$note.classList.add(colors[newNoteContainer.colorNumber]);
+        newNoteContainer.$header.classList.add(colors[newNoteContainer.colorNumber]);
+        newNoteContainer.$text.classList.add(colors[newNoteContainer.colorNumber]);
     }
     else {
-        addNoteContent.button.style.visibility='hidden';
-        addNoteContent.note.classList.remove(colors[colorNumber]);
-        addNoteContent.header.classList.remove(colors[colorNumber]);
-        addNoteContent.text.classList.remove(colors[colorNumber]);
+        newNoteContainer.$button.style.visibility='hidden';
+        newNoteContainer.$note.classList.remove(colors[newNoteContainer.colorNumber]);
+        newNoteContainer.$header.classList.remove(colors[newNoteContainer.colorNumber]);
+        newNoteContainer.$text.classList.remove(colors[newNoteContainer.colorNumber]);
     }
 }
 
-function addPrior () {
-    let newPriorNote = new Object();
-    newPriorNote.note = $addPriorNote;
-    newPriorNote.header = $addPriorHeader;
-    newPriorNote.text = $addPriorText;
-    newPriorNote.button = $applyButtonPrior;
-    setStyle(newPriorNote);
-}
-
-function addCommon () {
-    let newCommonNote = new Object();
-    newCommonNote.note = $addCommonNote;
-    newCommonNote.header = $addCommonHeader;
-    newCommonNote.text = $addCommonText;
-    newCommonNote.button = $applyButtonCommon;
-    setStyle(newCommonNote);
-}
-
-$addPriorHeader.addEventListener('keyup', function() {
-    addPrior();
+NewNoteContainer.Prior.$header.addEventListener('input', function() {
+    setStyle(NewNoteContainer.Prior);
 })
 
-$addPriorText.addEventListener('keyup', function() {
-    addPrior();
+NewNoteContainer.Prior.$text.addEventListener('input', function() {
+    setStyle(NewNoteContainer.Prior);
 })
 
-$addCommonHeader.addEventListener('keyup', function() {
-    addCommon();
+NewNoteContainer.Common.$header.addEventListener('input', function() {
+    setStyle(NewNoteContainer.Common);
 })
 
-$addCommonText.addEventListener('keyup', function() {
-    addCommon();
+NewNoteContainer.Common.$text.addEventListener('input', function() {
+    setStyle(NewNoteContainer.Common);
 })
