@@ -9,7 +9,6 @@ function makeNote(note_obj) {
     header.textContent = note_obj.title;
 
     let text = document.createElement('div');
- //   text.classList.add('text');
     text.textContent = note_obj.content;
 
     let contentOverlay = document.createElement('div');
@@ -17,11 +16,7 @@ function makeNote(note_obj) {
 
     contentOverlay.appendChild(header);
     contentOverlay.appendChild(text); 
-/*
-    let image = document.createElement('img');
-    img.classList.add('text');
-    text.textContent = note_obj.content;
-    */
+    
     let actionsOverlay = document.createElement('div');
     actionsOverlay.classList.add('actionsOverlay');
 
@@ -38,12 +33,8 @@ function makeNote(note_obj) {
         note.appendChild(imageOverlay);
     }
 
-   // note.appendChild(header);
-   // note.appendChild(text);
     note.appendChild(contentOverlay);
     note.appendChild(actions);
-   // actionsOverlay.appendChild(actions);
-  //  note.appendChild(actionsOverlay);
     return note;
 }
 
