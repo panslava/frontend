@@ -34,35 +34,77 @@ NewNoteContainer.Common = new AddContainer(
 
 var colors = ['red','orange','yellow','lightgreen','blue','pink'];
 
-function setStyle (newNoteContainer) {
+function colorNote (newNoteContainer) {
+    newNoteContainer.$button.style.visibility='visible';
+    newNoteContainer.$note.classList.add(colors[newNoteContainer.colorNumber]);
+    newNoteContainer.$header.classList.add(colors[newNoteContainer.colorNumber]);
+    newNoteContainer.$text.classList.add(colors[newNoteContainer.colorNumber]);
+}
+
+function uncolorNote (newNoteContainer) {
+    newNoteContainer.$button.style.visibility='hidden';
+    newNoteContainer.$note.classList.remove(colors[newNoteContainer.colorNumber]);
+    newNoteContainer.$header.classList.remove(colors[newNoteContainer.colorNumber]);
+    newNoteContainer.$text.classList.remove(colors[newNoteContainer.colorNumber]);
+}
+
+function setSize (newNoteContainer) {
     auto_grow(newNoteContainer.$header);
     auto_grow(newNoteContainer.$text);
-    if (newNoteContainer.$text.value.length + newNoteContainer.$header.value.length>0) {
-        newNoteContainer.$button.style.visibility='visible';
-        newNoteContainer.$note.classList.add(colors[newNoteContainer.colorNumber]);
-        newNoteContainer.$header.classList.add(colors[newNoteContainer.colorNumber]);
-        newNoteContainer.$text.classList.add(colors[newNoteContainer.colorNumber]);
-    }
-    else {
-        newNoteContainer.$button.style.visibility='hidden';
-        newNoteContainer.$note.classList.remove(colors[newNoteContainer.colorNumber]);
-        newNoteContainer.$header.classList.remove(colors[newNoteContainer.colorNumber]);
-        newNoteContainer.$text.classList.remove(colors[newNoteContainer.colorNumber]);
-    }
 }
 
 NewNoteContainer.Prior.$header.addEventListener('input', function() {
-    setStyle(NewNoteContainer.Prior);
+    setSize(NewNoteContainer.Prior);
 })
 
 NewNoteContainer.Prior.$text.addEventListener('input', function() {
-    setStyle(NewNoteContainer.Prior);
+    setSize(NewNoteContainer.Prior);
 })
 
 NewNoteContainer.Common.$header.addEventListener('input', function() {
-    setStyle(NewNoteContainer.Common);
+    setSize(NewNoteContainer.Common);
 })
 
 NewNoteContainer.Common.$text.addEventListener('input', function() {
-    setStyle(NewNoteContainer.Common);
+    setSize(NewNoteContainer.Common);
+})
+
+
+
+NewNoteContainer.Prior.$header.addEventListener('focus', function() {
+    colorNote(NewNoteContainer.Prior);
+})
+
+NewNoteContainer.Prior.$text.addEventListener('focus', function() {
+    colorNote(NewNoteContainer.Prior);
+})
+
+NewNoteContainer.Common.$header.addEventListener('focus', function() {
+    colorNote(NewNoteContainer.Common);
+})
+
+NewNoteContainer.Common.$text.addEventListener('focus', function() {
+    colorNote(NewNoteContainer.Common);
+})
+
+
+
+NewNoteContainer.Prior.$header.addEventListener('blur', function() {
+    if (NewNoteContainer.Prior.$text.value.length + NewNoteContainer.Prior.$header.value.length===0)
+    uncolorNote(NewNoteContainer.Prior);
+})
+
+NewNoteContainer.Prior.$text.addEventListener('blur', function() {
+    if (NewNoteContainer.Prior.$text.value.length + NewNoteContainer.Prior.$header.value.length===0)
+    uncolorNote(NewNoteContainer.Prior);
+})
+
+NewNoteContainer.Common.$header.addEventListener('blur', function() {
+    if (NewNoteContainer.Common.$text.value.length + NewNoteContainer.Common.$header.value.length===0)
+    uncolorNote(NewNoteContainer.Common);
+})
+
+NewNoteContainer.Common.$text.addEventListener('blur', function() {
+    if (NewNoteContainer.Common.$text.value.length + NewNoteContainer.Common.$header.value.length===0)
+    uncolorNote(NewNoteContainer.Common);
 })

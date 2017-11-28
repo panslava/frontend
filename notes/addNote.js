@@ -14,7 +14,7 @@ function addNewNote (inputNoteContainer) {
 
 NewNoteContainer.Prior.$button.addEventListener('click', function () {
     let addingData = getDataFromContainer(NewNoteContainer.Prior);
-    NewNoteContainer.Prior.$button.style.visibility="hidden";
+    NewNoteContainer.Prior.$button.style.visibility = "hidden";
     NewNoteContainer.Prior.$note.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
     NewNoteContainer.Prior.$header.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
     NewNoteContainer.Prior.$text.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
@@ -25,7 +25,7 @@ NewNoteContainer.Prior.$button.addEventListener('click', function () {
 
 NewNoteContainer.Common.$button.addEventListener('click', function () { 
     let addingData = getDataFromContainer(NewNoteContainer.Common);
-    NewNoteContainer.Common.$button.style.visibility="hidden";
+    NewNoteContainer.Common.$button.style.visibility = "hidden";
     NewNoteContainer.Common.$note.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
     NewNoteContainer.Common.$header.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
     NewNoteContainer.Common.$text.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
@@ -81,19 +81,3 @@ function getDataFromContainer (newNoteContainer) {
     data.groupName = newNoteContainer.groupName;
     return data;
 }
-
-NewNoteContainer.Prior.$header.addEventListener('input', function() {
-    setStyle(NewNoteContainer.Prior);
-})
-
-NewNoteContainer.Prior.$text.addEventListener('input', function() {
-    setStyle(NewNoteContainer.Prior);
-})
-
-NewNoteContainer.Common.$header.addEventListener('input', function() {
-    setStyle(NewNoteContainer.Common);
-})
-
-NewNoteContainer.Common.$text.addEventListener('input', function() {
-    setStyle(NewNoteContainer.Common);
-})
