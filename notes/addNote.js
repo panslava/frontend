@@ -66,7 +66,14 @@ function makeNewNote(note_obj) {
 
     let actions = document.createElement('div');
     actions.classList.add('actions');
-    actions.textContent="Actions";
+  //  actions.textContent="Actions";
+
+    let editButtonDiv = document.createElement('div');
+    let editButtonImage = document.createElement('img');
+    editButtonImage.src = editButtonImgPath;
+    editButtonDiv.classList.add("editButton");
+    editButtonDiv.appendChild(editButtonImage);
+    actions.appendChild(editButtonDiv);
 
     note.appendChild(contentOverlay);
     note.appendChild(actions);

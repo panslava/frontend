@@ -59,8 +59,8 @@ textarea {
     border:0px;
     width:100%;
     background-color: rgb(232,232,231);
-    max-height: 10rem;
-    min-height:80px;
+    max-height: 10rem;   
+    min-height:80px 
 }
 
 .inputText {
@@ -71,7 +71,7 @@ textarea {
     height:7rem;
     font-size:1rem;
     max-height: 15rem;
-    min-height:116px;
+    min-height:120px;
 }
 
 .notes {
@@ -114,6 +114,11 @@ textarea {
     align-self: flex-end;
 }
 
+.editButton img {
+    min-height:3rem;
+    max-height:3rem;
+}
+
 .notes:hover .actions {
     visibility: visible;
 }
@@ -147,6 +152,7 @@ textarea {
     font-weight: bold;
     font-size:2rem;
     word-wrap:break-word;
+    min-height:84px;
 }
 
 @media (max-width: 768px) {

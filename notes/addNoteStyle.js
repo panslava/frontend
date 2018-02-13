@@ -12,6 +12,7 @@ class AddContainer {
 
 var NewNoteContainer = new Object();
 
+
 NewNoteContainer.Prior = new AddContainer(
     document.getElementById("addPriorNote"),
     document.getElementById("addPriorHeader"),

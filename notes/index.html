@@ -6,17 +6,14 @@
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' type = 'text/css' href = 'style.css'/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-    <script>
-            { data }
-    </script>   
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> 
 </head>
 <body style="background-color: rgb(232,232,231)">
     <div class="main">
         <div class="groupHeader">Приоритетные</div>
         <div class="priority">
             <div class="notes" style = "box-shadow: 1px 2px 7px 1px #aaa" id = "addPriorNote">
-                <div class="applyButton" id ="applyButtonPrior"><img src="tick.png"></div>
+                <div class="applyButton" id ="applyButtonPrior"></div>
                 <div class="contentOverlay">
                     <textarea class="inputHeader" id="addPriorHeader" placeholder="Заголовок" name="newNotePriorHeader"></textarea>
                     <textarea class="inputText" id="addPriorText" placeholder="Текст заметки" name="newNotePriorText"></textarea>
@@ -26,7 +23,7 @@
         <div class="groupHeader">Обычные</div>
         <div class="normal">
             <div class="notes" style = "box-shadow: 1px 2px 7px 1px #aaa" id="addCommonNote">
-                <div class="applyButton" id="applyButtonCommon"><img src="tick.png"></div>
+                <div class="applyButton" id="applyButtonCommon"></div>
                 <div class="contentOverlay">
                         <textarea class="inputHeader" id="addCommonHeader" placeholder="Заголовок" name="newNoteCommonHeader"></textarea>
                         <textarea class="inputText" id="addCommonText" placeholder="Текст заметки" name="newNoteCommonText"></textarea>
@@ -35,6 +32,8 @@
         </div>
     </div>
 </body>
+
+<script src = "imgPaths.js"></script>
 <script src = "autoExpend.js"></script>
 <script src = "addNoteStyle.js"></script>
 <script src = "addNote.js"></script>
