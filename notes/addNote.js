@@ -12,26 +12,45 @@ function addNewNote (inputNoteContainer) {
     NewNoteContainer[inputNoteContainer.groupName].colorNumber %= colors.length;
 }
 
-NewNoteContainer.Prior.$button.addEventListener('click', function () {
+// кнопка добавления заметки
+NewNoteContainer.Prior.buttons.$addNote.addEventListener('click', function () {
     let addingData = getDataFromContainer(NewNoteContainer.Prior);
-    NewNoteContainer.Prior.$button.style.visibility = "hidden";
-    NewNoteContainer.Prior.$note.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
-    NewNoteContainer.Prior.$header.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
-    NewNoteContainer.Prior.$text.classList.remove(colors[NewNoteContainer.Prior.colorNumber]);
+    uncolorAddingNote(NewNoteContainer.Prior);
     addNewNote(addingData);
     NewNoteContainer.Prior.$header.value = "";
     NewNoteContainer.Prior.$text.value = "";
 })
 
-NewNoteContainer.Common.$button.addEventListener('click', function () { 
+NewNoteContainer.Common.buttons.$addNote.addEventListener('click', function () { 
     let addingData = getDataFromContainer(NewNoteContainer.Common);
-    NewNoteContainer.Common.$button.style.visibility = "hidden";
-    NewNoteContainer.Common.$note.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
-    NewNoteContainer.Common.$header.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
-    NewNoteContainer.Common.$text.classList.remove(colors[NewNoteContainer.Common.colorNumber]);
+    uncolorAddingNote(NewNoteContainer.Common);
     addNewNote(addingData);
     NewNoteContainer.Common.$header.value = "";
     NewNoteContainer.Common.$text.value = "";
+})
+
+//кнопка добавления картинки (открытие popup меню)
+NewNoteContainer.Prior.buttons.$addImage.addEventListener('click', function () {
+    NewNoteContainer.Prior.buttons.$addImage.state = 
+    (NewNoteContainer.Prior.buttons.$addImage.state + 1) % 2;
+    if (NewNoteContainer.Prior.buttons.$addImage.state == 1) {
+        colorAddingNote(NewNoteContainer.Prior);
+        openImagePopupBar(NewNoteContainer.Prior);
+    }
+    else {
+        uncolorAddingNote(NewNoteContainer.Prior);
+        closeImagePopupBar(NewNoteContainer.Prior);
+    }
+})
+
+//кнопка добавления картинки внутри popup (apply)
+NewNoteContainer.Prior.buttons.$addImagePopupApply.addEventListener('click', function () {
+    if (document.getElementById('addImageSrcPopupPrior').value != "") {
+        addImage(NewNoteContainer.Prior, document.getElementById('addImageSrcPopupPrior').value);
+    }
+    NewNoteContainer.Prior.buttons.$addImage.state = 0;
+    NewNoteContainer.Prior.$addImagePopupDiv.style.visibility = "hidden";
+    NewNoteContainer.Prior.$addImageSrcPopup.value = "";
 })
 
 function makeNewNote(note_obj) {
@@ -55,19 +74,20 @@ function makeNewNote(note_obj) {
         contentOverlay.appendChild(text); 
     }
 
-    if ("image" in note_obj) {
+    if ("imageSrc" in note_obj) {
         let image = document.createElement('img');
         let imageOverlay = document.createElement('div');
-        image.src = note_obj.image;
-        imageOverlay.classList.add('image');
-        imageOverlay.appendChild(image);
-        note.appendChild(imageOverlay);
+        image.src = note_obj.imageSrc;
+        image.classList.add('image');
+        //imageOverlay.classList.add('image');
+        //imageOverlay.appendChild(image);
+        note.appendChild(image);
     }
 
     let actions = document.createElement('div');
     actions.classList.add('actions');
   //  actions.textContent="Actions";
-
+    
     let editButtonDiv = document.createElement('div');
     let editButtonImage = document.createElement('img');
     editButtonImage.src = editButtonImgPath;
@@ -86,5 +106,64 @@ function getDataFromContainer (newNoteContainer) {
     data.header = newNoteContainer.$header.value;
     data.text = newNoteContainer.$text.value;
     data.groupName = newNoteContainer.groupName;
+    data.imageSrc = newNoteContainer.imageSrc;
     return data;
+}
+
+function clearNote (NoteContainer) {
+    NoteContainer.$header.value = "";
+    NoteContainer.$text.value = "";
+    deleteImage(NoteContainer);
+}
+
+function openImagePopupBar (NoteContainer) {
+    NoteContainer.$addImagePopupDiv.style.visibility = 'visible';
+}
+
+function closeImagePopupBar (NoteContainer) {
+    NoteContainer.$addImagePopupDiv.style.visibility = 'hidden';
+}
+
+function addImage (NoteContainer, imageSrc) {
+    if (imageSrc!="") {
+        NoteContainer.$text.style.height = "20px";
+        NoteContainer.$header.style.minHeight = "40px";
+        NoteContainer.$header.style.height = "40px";
+        auto_grow(NoteContainer.$header);
+        auto_grow(NoteContainer.$text);
+        NoteContainer.$contentOverlay.style.paddingTop = "0.8rem";
+        NoteContainer.imageSrc = imageSrc;
+        let $newImageOverlay = document.createElement('div');
+        let $newImage = document.createElement('img');
+        let $deleteImageButton = document.createElement('img');
+        $newImageOverlay.classList.add("image");
+        $newImage.classList.add("image");
+        $newImage.src = imageSrc;
+        $newImageOverlay.appendChild($newImage);
+        NoteContainer.$imageOverlay = $newImageOverlay;
+        NoteContainer.$image = $newImage;
+        $deleteImageButton.addEventListener('click', function() {
+            deleteImage(NoteContainer)
+        });
+        $deleteImageButton.src = deleteImageButtonPath;
+        $deleteImageButton.classList.add('deleteImageButton');
+        $newImageOverlay.appendChild($deleteImageButton);
+        NoteContainer.$note.insertBefore(
+            $newImageOverlay, NoteContainer.$contentOverlay);
+    }
+}
+
+function deleteImage (NoteContainer) {
+    NoteContainer.$image.remove();
+    NoteContainer.$imageOverlay.remove();
+    NoteContainer.$contentOverlay.removeAttribute("style")
+    NoteContainer.$note.removeAttribute("style");
+    NoteContainer.$header.removeAttribute("style");
+    NoteContainer.$text.removeAttribute("style");
+    NoteContainer.imageSrc = "";
+    auto_grow(NoteContainer.$header);
+    auto_grow(NoteContainer.$text);
+    NoteContainer.$image = undefined;
+    NoteContainer.$imageOverlay = undefined;
+    uncolorAddingNote(NoteContainer);
 }

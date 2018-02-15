@@ -30,8 +30,10 @@
     margin:1rem;
 }
 
+
 #addCommonNote, #addPriorNote {
     order:-500;
+    box-shadow: 1px 2px 7px 1px #aaa
 }
 
 .applyButton {
@@ -59,8 +61,8 @@ textarea {
     border:0px;
     width:100%;
     background-color: rgb(232,232,231);
-    max-height: 10rem;   
-    min-height:80px 
+    max-height: 10rem;
+    min-height:74px;
 }
 
 .inputText {
@@ -71,7 +73,7 @@ textarea {
     height:7rem;
     font-size:1rem;
     max-height: 15rem;
-    min-height:120px;
+    min-height:10px;
 }
 
 .notes {
@@ -85,15 +87,17 @@ textarea {
 }
 
 .image {
-    max-height:8rem;
-    min-height:8rem;
+    position: relative;
+    width:100%;
     overflow:hidden;
     background-size: contain
 }
 
+/*
 .image img {
     width:100%;
 }
+*/
 
 .groupHeader {
     margin:1rem;
@@ -106,18 +110,91 @@ textarea {
     display:flex;
     flex-direction: column;
     padding:1.5rem;
+    padding-bottom:0.5rem;
 }
 
 .actions {
     visibility:hidden;
     margin-top: auto;
+    margin-right:4px;
     align-self: flex-end;
 }
 
 .editButton img {
-    min-height:3rem;
-    max-height:3rem;
+    min-height:2rem;
+    max-height:2rem;
 }
+
+.addButton img {
+    min-height:2rem;
+    max-height:2rem;
+}
+
+.addImage {
+    display:flex; 
+    flex-direction:column;
+}
+
+.addImageSrcPopup {
+    z-index: 5;
+    display:flex;
+    visibility: hidden;
+    min-width: 20px;
+    background: cornsilk;
+    margin-left:-75px;
+    margin-right:-75px;
+    box-shadow: 1px 2px 7px 1px #aaa;
+}
+
+.addImageSrcPopup img {
+    box-shadow: 0px 4px 10px 2px #aaa;
+    max-height: 20px;
+    min-height: 20px;
+}
+
+#addImageSrcPopupPrior {
+    background: cornsilk;
+    border:0;
+    width:100%;
+}
+
+.addImageSrcPopup ::-webkit-input-placeholder {
+    text-align: center;
+ }
+ 
+ .addImageSrcPopup :-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+ }
+ 
+ .addImageSrcPopup ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ .addImageSrcPopup :-ms-input-placeholder {  
+    text-align: center; 
+ }
+
+ .deleteImageButton {
+     position:absolute;
+     width:20px;
+     right:1.5%;
+     top:2%;
+ }
+
+/* i cant
+.addImageSrcPopupBeauty {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    bottom:-10px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+*/
+
 
 .notes:hover .actions {
     visibility: visible;

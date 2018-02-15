@@ -12,28 +12,46 @@
     <div class="main">
         <div class="groupHeader">Приоритетные</div>
         <div class="priority">
-            <div class="notes" style = "box-shadow: 1px 2px 7px 1px #aaa" id = "addPriorNote">
+            <div class="notes" id = "addPriorNote">
                 <div class="applyButton" id ="applyButtonPrior"></div>
-                <div class="contentOverlay">
+                <div class="contentOverlay" id = "contentOverlayPrior">
                     <textarea class="inputHeader" id="addPriorHeader" placeholder="Заголовок" name="newNotePriorHeader"></textarea>
                     <textarea class="inputText" id="addPriorText" placeholder="Текст заметки" name="newNotePriorText"></textarea>
+                </div>
+                <div class="actions" style="visibility:visible">
+                    <div class = "addImage">
+                        <div id = "addImagePopupPrior" class = "addImageSrcPopup">
+                            <input id="addImageSrcPopupPrior" placeholder="Ссылка на картинку">
+                        </div>
+                        <div class="addButton" id="addImageButtonPrior">
+                        </div>
+                     </div>
                 </div>
             </div>
         </div>
         <div class="groupHeader">Обычные</div>
         <div class="normal">
-            <div class="notes" style = "box-shadow: 1px 2px 7px 1px #aaa" id="addCommonNote">
+            <div class="notes" id="addCommonNote">
                 <div class="applyButton" id="applyButtonCommon"></div>
                 <div class="contentOverlay">
                         <textarea class="inputHeader" id="addCommonHeader" placeholder="Заголовок" name="newNoteCommonHeader"></textarea>
                         <textarea class="inputText" id="addCommonText" placeholder="Текст заметки" name="newNoteCommonText"></textarea>
-                </div>    
+                </div> 
+                <div class="actions" style="visibility:visible">
+                    <div class = "addImage">
+                        <div id = "addImagePopupCommon" class = "addImageSrcPopup">
+                            <input id="addImageSrcPopupCommon" placeholder="Ссылка на картинку">
+                        </div>
+                        <div class="addButton" id="addImageButtonCommon">
+                        </div>
+                     </div>
+                </div>   
             </div>
         </div>
     </div>
 </body>
 
 <script src = "imgPaths.js"></script>
-<script src = "autoExpend.js"></script>
 <script src = "addNoteStyle.js"></script>
 <script src = "addNote.js"></script>
+<script src = "autoExpend.js"></script>
