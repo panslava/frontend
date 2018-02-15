@@ -99,11 +99,6 @@ textarea {
 }
 */
 
-[contenteditable=true]:empty:before{
-    content: attr(placeholder);
-    display: block; /* For Firefox */
-  }
-
 .groupHeader {
     margin:1rem;
     font-weight: bold;
