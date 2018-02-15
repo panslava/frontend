@@ -4,29 +4,24 @@ function addNewNote (inputNoteContainer) {
         inputNoteContainer.groupName = "Common";
     }
     inputNoteContainer.$group = NewNoteContainer[inputNoteContainer.groupName].$group;
-    inputNoteContainer.colorNumber = NewNoteContainer[inputNoteContainer.groupName].colorNumber;
+    inputNoteContainer.colorNumber = newNote.colorNumber;
     newNote.classList.add(colors[inputNoteContainer.colorNumber]);
     inputNoteContainer.$group.insertBefore(newNote, inputNoteContainer.$group.children[1]);
-    
-    NewNoteContainer[inputNoteContainer.groupName].colorNumber++;
-    NewNoteContainer[inputNoteContainer.groupName].colorNumber %= colors.length;
 }
 
 // кнопка добавления заметки
 NewNoteContainer.Prior.buttons.$addNote.addEventListener('click', function () {
+    uncolorNote(NewNoteContainer.Prior);
     let addingData = getDataFromContainer(NewNoteContainer.Prior);
-    uncolorAddingNote(NewNoteContainer.Prior);
     addNewNote(addingData);
-    NewNoteContainer.Prior.$header.value = "";
-    NewNoteContainer.Prior.$text.value = "";
+    clearNote(NewNoteContainer.Prior);
 })
 
 NewNoteContainer.Common.buttons.$addNote.addEventListener('click', function () { 
     let addingData = getDataFromContainer(NewNoteContainer.Common);
-    uncolorAddingNote(NewNoteContainer.Common);
     addNewNote(addingData);
-    NewNoteContainer.Common.$header.value = "";
-    NewNoteContainer.Common.$text.value = "";
+    clearNote(NewNoteContainer.Common);
+    uncolorNote(NewNoteContainer.Common);
 })
 
 //кнопка добавления картинки (открытие popup меню)
@@ -34,11 +29,11 @@ NewNoteContainer.Prior.buttons.$addImage.addEventListener('click', function () {
     NewNoteContainer.Prior.buttons.$addImage.state = 
     (NewNoteContainer.Prior.buttons.$addImage.state + 1) % 2;
     if (NewNoteContainer.Prior.buttons.$addImage.state == 1) {
-        colorAddingNote(NewNoteContainer.Prior);
+        colorNote(NewNoteContainer.Prior);
         openImagePopupBar(NewNoteContainer.Prior);
     }
     else {
-        uncolorAddingNote(NewNoteContainer.Prior);
+        uncolorNote(NewNoteContainer.Prior);
         closeImagePopupBar(NewNoteContainer.Prior);
     }
 })
@@ -84,6 +79,10 @@ function makeNewNote(note_obj) {
         note.appendChild(image);
     }
 
+    if ("colorNumber" in note_obj) {
+        note.colorNumber = note_obj.colorNumber;
+    }
+
     let actions = document.createElement('div');
     actions.classList.add('actions');
   //  actions.textContent="Actions";
@@ -107,6 +106,7 @@ function getDataFromContainer (newNoteContainer) {
     data.text = newNoteContainer.$text.value;
     data.groupName = newNoteContainer.groupName;
     data.imageSrc = newNoteContainer.imageSrc;
+    data.colorNumber = newNoteContainer.colorNumber;
     return data;
 }
 
@@ -154,8 +154,8 @@ function addImage (NoteContainer, imageSrc) {
 }
 
 function deleteImage (NoteContainer) {
-    NoteContainer.$image.remove();
-    NoteContainer.$imageOverlay.remove();
+    if (NoteContainer.$image!=undefined) NoteContainer.$image.remove();
+    if (NoteContainer.$imageOverlay!=undefined) NoteContainer.$imageOverlay.remove();
     NoteContainer.$contentOverlay.removeAttribute("style")
     NoteContainer.$note.removeAttribute("style");
     NoteContainer.$header.removeAttribute("style");
@@ -165,5 +165,5 @@ function deleteImage (NoteContainer) {
     auto_grow(NoteContainer.$text);
     NoteContainer.$image = undefined;
     NoteContainer.$imageOverlay = undefined;
-    uncolorAddingNote(NoteContainer);
+    uncolorNote(NoteContainer);
 }

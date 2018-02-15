@@ -67,16 +67,16 @@ NewNoteContainer.Common = new AddingNotePattern(
     ""
 );
 
-var colors = ['red','orange','yellow','lightgreen','blue','pink'];
+var colors = ['basic', 'red','orange','yellow','lightgreen','blue','pink'];
 
-function colorAddingNote (newNoteContainer) {
+function colorNote (newNoteContainer) {
     newNoteContainer.buttons.$addNote.style.visibility='visible';
     newNoteContainer.$note.classList.add(colors[newNoteContainer.colorNumber]);
     newNoteContainer.$header.classList.add(colors[newNoteContainer.colorNumber]);
     newNoteContainer.$text.classList.add(colors[newNoteContainer.colorNumber]);
 }
 
-function uncolorAddingNote (newNoteContainer) {
+function uncolorNote (newNoteContainer) {
     if (!(newNoteContainer.$header.value != "" || newNoteContainer.$text.value != "" 
     || newNoteContainer.imageSrc != "")) {
         newNoteContainer.buttons.$addNote.style.visibility='hidden';
@@ -105,39 +105,39 @@ NewNoteContainer.Common.$text.addEventListener('input', function() {
 
 
 NewNoteContainer.Prior.$header.addEventListener('focus', function() {
-    colorAddingNote(NewNoteContainer.Prior);
+    colorNote(NewNoteContainer.Prior);
 })
 
 NewNoteContainer.Prior.$text.addEventListener('focus', function() {
-    colorAddingNote(NewNoteContainer.Prior);
+    colorNote(NewNoteContainer.Prior);
 })
 
 NewNoteContainer.Common.$header.addEventListener('focus', function() {
-    colorAddingNote(NewNoteContainer.Common);
+    colorNote(NewNoteContainer.Common);
 })
 
 NewNoteContainer.Common.$text.addEventListener('focus', function() {
-    colorAddingNote(NewNoteContainer.Common);
+    colorNote(NewNoteContainer.Common);
 })
 
 
 
 NewNoteContainer.Prior.$header.addEventListener('blur', function() {
     if (NewNoteContainer.Prior.$text.value.length + NewNoteContainer.Prior.$header.value.length===0)
-    uncolorAddingNote(NewNoteContainer.Prior);
+    uncolorNote(NewNoteContainer.Prior);
 })
 
 NewNoteContainer.Prior.$text.addEventListener('blur', function() {
     if (NewNoteContainer.Prior.$text.value.length + NewNoteContainer.Prior.$header.value.length===0)
-    uncolorAddingNote(NewNoteContainer.Prior);
+    uncolorNote(NewNoteContainer.Prior);
 })
 
 NewNoteContainer.Common.$header.addEventListener('blur', function() {
     if (NewNoteContainer.Common.$text.value.length + NewNoteContainer.Common.$header.value.length===0)
-    uncolorAddingNote(NewNoteContainer.Common);
+    uncolorNote(NewNoteContainer.Common);
 })
 
 NewNoteContainer.Common.$text.addEventListener('blur', function() {
     if (NewNoteContainer.Common.$text.value.length + NewNoteContainer.Common.$header.value.length===0)
-    uncolorAddingNote(NewNoteContainer.Common);
+    uncolorNote(NewNoteContainer.Common);
 })
