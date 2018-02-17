@@ -11,38 +11,42 @@
 <body style="background-color: rgb(232,232,231)">
     <div class="main">
         <div class="groupHeader">Приоритетные</div>
-        <div class="priority">
+        <div id="priority">
+            <!--
             <div class="notes" id = "addPriorNote">
                 <div class="applyButton" id ="applyButtonPrior"></div>
                 <div class="contentOverlay" id = "contentOverlayPrior">
-                    <textarea class="inputHeader" id="addPriorHeader" placeholder="Заголовок" name="newNotePriorHeader"></textarea>
-                    <textarea class="inputText" id="addPriorText" placeholder="Текст заметки" name="newNotePriorText"></textarea>
+                    <textarea class="header" id="addPriorHeader" placeholder="Заголовок" name="newNotePriorHeader"></textarea>
+                    <textarea class="text" id="addPriorText" placeholder="Текст заметки" name="newNotePriorText"></textarea>
                 </div>
                 <div class="actions" style="visibility:visible">
                     <div class = "addImage">
-                        <div id = "addImagePopupPrior" class = "addImageSrcPopup">
-                            <input id="addImageSrcPopupPrior" placeholder="Ссылка на картинку">
+                        <div class = "addImagePopupDiv" id = "addImagePopupPrior">
+                            <input class = "addImageSrcPopup" id="addImageSrcPopupPrior" placeholder="Ссылка на картинку">
+                     
                         </div>
-                        <div class="addButton" id="addImageButtonPrior">
+                        <div class="addImageButton" id="addImageButtonPrior">
+                         
                         </div>
                      </div>
                 </div>
             </div>
+    -->
         </div>
         <div class="groupHeader">Обычные</div>
-        <div class="normal">
+        <div id="normal">
             <div class="notes" id="addCommonNote">
                 <div class="applyButton" id="applyButtonCommon"></div>
-                <div class="contentOverlay">
-                        <textarea class="inputHeader" id="addCommonHeader" placeholder="Заголовок" name="newNoteCommonHeader"></textarea>
-                        <textarea class="inputText" id="addCommonText" placeholder="Текст заметки" name="newNoteCommonText"></textarea>
+                <div class="contentOverlay" id = "contentOverlayCommon">
+                        <textarea class="header" id="addCommonHeader" placeholder="Заголовок" name="newNoteCommonHeader"></textarea>
+                        <textarea class="text" id="addCommonText" placeholder="Текст заметки" name="newNoteCommonText"></textarea>
                 </div> 
                 <div class="actions" style="visibility:visible">
                     <div class = "addImage">
                         <div id = "addImagePopupCommon" class = "addImageSrcPopup">
                             <input id="addImageSrcPopupCommon" placeholder="Ссылка на картинку">
                         </div>
-                        <div class="addButton" id="addImageButtonCommon">
+                        <div class="addImageButton" id="addImageButtonCommon">
                         </div>
                      </div>
                 </div>   
@@ -55,3 +59,5 @@
 <script src = "addNoteStyle.js"></script>
 <script src = "addNote.js"></script>
 <script src = "autoExpend.js"></script>
+<script src = "editNote.js"></script>
+<script src = "initializeAddingNotes.js"></script>

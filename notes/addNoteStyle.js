@@ -1,4 +1,5 @@
-class AddingNotePattern {
+/*
+class NotePattern {
     constructor (note, header, text, imageSrc,
         contentOverlay, imageOverlay, image,
         applyButton, addImageButton, deleteImageButton,
@@ -27,12 +28,25 @@ class AddingNotePattern {
         this.$group = group;
         this.colorNumber = colorNumber;
         this.groupName = groupName;
+    
+        if (this.$note   !=undefined) this.$note.classList.add("notes");
+        if (this.$header !=undefined) this.$header.classList.add("header");
+        if (this.$text   !=undefined) this.$text.classList.add("text");
+        if (this.$сontentOverlay   !=undefined) this.$contentOverlay.classList.add("contentOverlay");
+        if (this.$imageOverlay   !=undefined) this.$imageOverlay.classList.add("image");
+        if (this.$image   !=undefined) this.$image.classList.add("image");
+        if (this.buttons.$addNote   !=undefined) this.buttons.$addNote.classList.add("applyButton");
+        if (this.buttons.$addImage   !=undefined) this.buttons.$addImage.classList.add("addImageButton");
+        if (this.buttons.$deleteImage   !=undefined) this.buttons.$deleteImage.classList.add("deleteImageButton");
+        if (this.buttons.$addImagePopupDiv   !=undefined) this.buttons.$addImagePopupDiv.add("addImageSrcPopup");
+        if (this.$addImagePopupDiv!=undefined) this.$addImagePopupDiv.classList.add("addImagePopupDiv");
+        if (this.$addImageSrcPopup != undefined) this.$addImageSrcPopup.classList.add("addImageSrcPopup");
     }
 }
 
 var NewNoteContainer = new Object();
 
-NewNoteContainer.Prior = new AddingNotePattern(
+NewNoteContainer.Prior = new NotePattern(
     document.getElementById("addPriorNote"),
     document.getElementById("addPriorHeader"),
     document.getElementById("addPriorText"),
@@ -52,92 +66,40 @@ NewNoteContainer.Prior = new AddingNotePattern(
     "Prior"
 );
 
-NewNoteContainer.Common = new AddingNotePattern(
+NewNoteContainer.Common = new NotePattern(
     document.getElementById("addCommonNote"),
     document.getElementById("addCommonHeader"),
     document.getElementById("addCommonText"),
     "",  //image src
+
+    document.getElementById("contentOverlayCommon"),
+    undefined, //imageOverlay
+    undefined, //image
     document.getElementById("applyButtonCommon"),
     document.getElementById("addImageButtonCommon"),
+    undefined, //deleteImageButton
     document.getElementById("addImagePopupCommon"),
+    document.getElementById("addImageSrcPopupCommon"),
     $addImagePopupTickCommon,
     document.querySelector('.normal'),
     0,
     "Common",
     ""
 );
-
+*/
 var colors = ['basic', 'red','orange','yellow','lightgreen','blue','pink'];
 
 function colorNote (newNoteContainer) {
+    console.log("vis");
     newNoteContainer.buttons.$addNote.style.visibility='visible';
     newNoteContainer.$note.classList.add(colors[newNoteContainer.colorNumber]);
-    newNoteContainer.$header.classList.add(colors[newNoteContainer.colorNumber]);
-    newNoteContainer.$text.classList.add(colors[newNoteContainer.colorNumber]);
 }
 
 function uncolorNote (newNoteContainer) {
     if (!(newNoteContainer.$header.value != "" || newNoteContainer.$text.value != "" 
-    || newNoteContainer.imageSrc != "")) {
+        || newNoteContainer.imageSrc != "")) {
+        console.log("unvis");
         newNoteContainer.buttons.$addNote.style.visibility='hidden';
         newNoteContainer.$note.classList.remove(colors[newNoteContainer.colorNumber]);
-        newNoteContainer.$header.classList.remove(colors[newNoteContainer.colorNumber]);
-        newNoteContainer.$text.classList.remove(colors[newNoteContainer.colorNumber]);
     }
 }
-
-NewNoteContainer.Prior.$header.addEventListener('input', function() {
-    auto_grow(NewNoteContainer.Prior.$header);
-})
-
-NewNoteContainer.Prior.$text.addEventListener('input', function() {
-    auto_grow(NewNoteContainer.Prior.$text);
-})
-
-NewNoteContainer.Common.$header.addEventListener('input', function() {
-    auto_grow(NewNoteContainer.Common.$header);
-})
-
-NewNoteContainer.Common.$text.addEventListener('input', function() {
-    auto_grow(NewNoteContainer.Common.$text);
-})
-
-
-
-NewNoteContainer.Prior.$header.addEventListener('focus', function() {
-    colorNote(NewNoteContainer.Prior);
-})
-
-NewNoteContainer.Prior.$text.addEventListener('focus', function() {
-    colorNote(NewNoteContainer.Prior);
-})
-
-NewNoteContainer.Common.$header.addEventListener('focus', function() {
-    colorNote(NewNoteContainer.Common);
-})
-
-NewNoteContainer.Common.$text.addEventListener('focus', function() {
-    colorNote(NewNoteContainer.Common);
-})
-
-
-
-NewNoteContainer.Prior.$header.addEventListener('blur', function() {
-    if (NewNoteContainer.Prior.$text.value.length + NewNoteContainer.Prior.$header.value.length===0)
-    uncolorNote(NewNoteContainer.Prior);
-})
-
-NewNoteContainer.Prior.$text.addEventListener('blur', function() {
-    if (NewNoteContainer.Prior.$text.value.length + NewNoteContainer.Prior.$header.value.length===0)
-    uncolorNote(NewNoteContainer.Prior);
-})
-
-NewNoteContainer.Common.$header.addEventListener('blur', function() {
-    if (NewNoteContainer.Common.$text.value.length + NewNoteContainer.Common.$header.value.length===0)
-    uncolorNote(NewNoteContainer.Common);
-})
-
-NewNoteContainer.Common.$text.addEventListener('blur', function() {
-    if (NewNoteContainer.Common.$text.value.length + NewNoteContainer.Common.$header.value.length===0)
-    uncolorNote(NewNoteContainer.Common);
-})

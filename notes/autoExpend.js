@@ -4,7 +4,3 @@ function auto_grow(element) {
 }
 
 //we need to run it on load, to make fields right size
-auto_grow(NewNoteContainer.Prior.$header);
-auto_grow(NewNoteContainer.Prior.$text);
-auto_grow(NewNoteContainer.Common.$header);
-auto_grow(NewNoteContainer.Common.$text);

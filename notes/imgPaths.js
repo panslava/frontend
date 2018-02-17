@@ -6,6 +6,7 @@ let deleteImageButtonPath = "img\\deleteImageButton.png"
 
 
 // adding Buttons on addingNotes
+/*
 let $tickButtonImgCommon = document.createElement('img');
 let $tickButtonImgPrior = document.createElement('img');
 let $addImageButtonImgCommon = document.createElement('img');
@@ -26,3 +27,4 @@ document.getElementById("addImageButtonCommon").appendChild($addImageButtonImgCo
 document.getElementById("addImageButtonPrior").appendChild($addImageButtonImgPrior);
 document.getElementById("addImagePopupPrior").appendChild($addImagePopupTickPrior);
 document.getElementById("addImagePopupCommon").appendChild($addImagePopupTickCommon);
+*/

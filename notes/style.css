@@ -13,23 +13,13 @@
     margin: auto;
 }
 
-.priority, .normal {
+#priority, #normal {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
 }
-
-.addNote {
-    flex-direction:column;
-    border-radius: 1px;
-    min-height:16rem;
-    width:16rem;
-    box-shadow: 1px 2px 7px 1px #aaa;
-    margin:1rem;
-}
-
 
 #addCommonNote, #addPriorNote {
     order:-500;
@@ -54,22 +44,22 @@ textarea {
     overflow: hidden;
 }
 
-.inputHeader {
+.header {
     font-size:2rem;
     font-weight: bold;
     outline: none;
     border:0px;
     width:100%;
-    background-color: rgb(232,232,231);
+    background-color: transparent;
     max-height: 10rem;
     min-height:74px;
 }
 
-.inputText {
+.text {
     width:100%;
     outline: none;
     border:0px;
-    background-color: rgb(232,232,231);
+    background-color: transparent;
     height:7rem;
     font-size:1rem;
     max-height: 15rem;
@@ -90,14 +80,8 @@ textarea {
     position: relative;
     width:100%;
     overflow:hidden;
-    background-size: contain
+    background-size: contain;
 }
-
-/*
-.image img {
-    width:100%;
-}
-*/
 
 .groupHeader {
     margin:1rem;
@@ -133,49 +117,65 @@ textarea {
 .addImage {
     display:flex; 
     flex-direction:column;
+    position:relative;
 }
 
-.addImageSrcPopup {
+.addImageButton img {
+    min-height:2rem;
+    max-height:2rem;
+}
+
+.addImagePopupDiv {
     z-index: 5;
     display:flex;
+    border-radius: 3px;
+    position: absolute;
     visibility: hidden;
-    min-width: 20px;
-    background: cornsilk;
-    margin-left:-75px;
-    margin-right:-75px;
+    min-width: 182px;
+    background:white;
+    left:50%;
+    top:-25%;
+    transform: translate(-50%, -50%);
     box-shadow: 1px 2px 7px 1px #aaa;
 }
 
-.addImageSrcPopup img {
+.addImagePopupDiv img {
     box-shadow: 0px 4px 10px 2px #aaa;
     max-height: 20px;
     min-height: 20px;
 }
 
-#addImageSrcPopupPrior {
-    background: cornsilk;
+.PopupApply {
+    box-shadow: 0px 4px 10px 2px #aaa;
+    max-height: 20px;
+    min-height: 20px;
+}
+
+.addImageSrcPopup::-webkit-input-placeholder {
+    text-align: center;
+ }
+ 
+ .addImageSrcPopup:-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+ }
+ 
+ .addImageSrcPopup::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ .addImageSrcPopup:-ms-input-placeholder {  
+    text-align: center; 
+ }
+
+.addImageSrcPopup {
+    background-color:transparent;
     border:0;
     width:100%;
 }
 
-.addImageSrcPopup ::-webkit-input-placeholder {
-    text-align: center;
- }
- 
- .addImageSrcPopup :-moz-placeholder { /* Firefox 18- */
-    text-align: center;  
- }
- 
- .addImageSrcPopup ::-moz-placeholder {  /* Firefox 19+ */
-    text-align: center;  
- }
- 
- .addImageSrcPopup :-ms-input-placeholder {  
-    text-align: center; 
- }
-
  .deleteImageButton {
      position:absolute;
+     visibility: hidden;
      width:20px;
      right:1.5%;
      top:2%;
@@ -201,7 +201,7 @@ textarea {
 }
 
 .basic {
-    background-color: #fffdd7;
+    background-color: #FFFAF0;
 }
 
 .yellow {
@@ -228,6 +228,7 @@ textarea {
     background-color:#FFB6C1
 }
 
+/*
 .header {
     margin-bottom:.4rem;
     font-weight: bold;
@@ -235,7 +236,7 @@ textarea {
     word-wrap:break-word;
     min-height:84px;
 }
-
+*/
 @media (max-width: 768px) {
 
     .main {
