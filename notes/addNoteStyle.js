@@ -96,9 +96,8 @@ function colorNote (newNoteContainer) {
 }
 
 function uncolorNote (newNoteContainer) {
-    if (!(newNoteContainer.$header.value != "" || newNoteContainer.$text.value != "" 
+    if (!(newNoteContainer.$headerInput.value != "" || newNoteContainer.$textInput.value != "" 
         || newNoteContainer.imageSrc != "")) {
-        console.log("unvis");
         newNoteContainer.buttons.$addNote.style.visibility='hidden';
         newNoteContainer.$note.classList.remove(colors[newNoteContainer.colorNumber]);
     }

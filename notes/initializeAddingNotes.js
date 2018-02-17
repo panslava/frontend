@@ -2,12 +2,14 @@ let AddingPriorNote = createNoteElements();
 makeNoteEditable(AddingPriorNote);
 AddingPriorNote.buttons.$addNote.style.visibility = "hidden";
 
+/*
 AddingPriorNote.buttons.$addNote = document.createElement('div');
 AddingPriorNote.buttons.$addNote.classList.add("applyButton");
 AddingPriorNote.buttons.$addNoteImg = document.createElement('img');
 AddingPriorNote.buttons.$addNoteImg.src = tickButtonImgPath;
 AddingPriorNote.buttons.$addNote.appendChild(AddingPriorNote.buttons.$addNoteImg);
 AddingPriorNote.$note.appendChild(AddingPriorNote.buttons.$addNote);
+*/
 
 AddingPriorNote.buttons.$addNote.addEventListener('click', function () {
     uncolorNote(AddingPriorNote);
@@ -49,61 +51,41 @@ AddingCommonNote.buttons.$addImage.addEventListener('click', function () {
     }
 })
 
-
-AddingPriorNote.$header.addEventListener('input', function() {
-    auto_grow(AddingPriorNote.$header);
-})
-
-AddingPriorNote.$text.addEventListener('input', function() {
-    auto_grow(AddingPriorNote.$text);
-})
-
-AddingCommonNote.$header.addEventListener('input', function() {
-    auto_grow(AddingCommonNote.$header);
-})
-
-AddingCommonNote.$text.addEventListener('input', function() {
-    auto_grow(AddingCommonNote.$text);
-})
-
-
-
-
-AddingPriorNote.$header.addEventListener('focus', function() {
+AddingPriorNote.$headerInput.addEventListener('focus', function() {
     colorNote(AddingPriorNote);
 })
 
-AddingPriorNote.$text.addEventListener('focus', function() {
+AddingPriorNote.$textInput.addEventListener('focus', function() {
     colorNote(AddingPriorNote);
 })
 
-AddingCommonNote.$header.addEventListener('focus', function() {
+AddingCommonNote.$headerInput.addEventListener('focus', function() {
     colorNote(AddingCommonNote);
 })
-    
-AddingCommonNote.$text.addEventListener('focus', function() {
+
+AddingCommonNote.$textInput.addEventListener('focus', function() {
     colorNote(AddingCommonNote);
 })
 
 
 
-AddingPriorNote.$header.addEventListener('blur', function() {
-    if (AddingPriorNote.$text.value.length + AddingPriorNote.$header.value.length===0)
+AddingPriorNote.$headerInput.addEventListener('blur', function() {
+    if (AddingPriorNote.$textInput.value.length + AddingPriorNote.$headerInput.value.length===0)
     uncolorNote(AddingPriorNote);
 })
 
-AddingPriorNote.$text.addEventListener('blur', function() {
-    if (AddingPriorNote.$text.value.length + AddingPriorNote.$header.value.length===0)
+AddingPriorNote.$textInput.addEventListener('blur', function() {
+    if (AddingPriorNote.$textInput.value.length + AddingPriorNote.$headerInput.value.length===0)
     uncolorNote(AddingPriorNote);
 })
 
-AddingCommonNote.$header.addEventListener('blur', function() {
-    if (AddingCommonNote.$text.value.length + AddingCommonNote.$header.value.length===0)
+AddingCommonNote.$headerInput.addEventListener('blur', function() {
+    if (AddingCommonNote.$textInput.value.length + AddingCommonNote.$headerInput.value.length===0)
     uncolorNote(AddingCommonNote);
 })
 
-AddingCommonNote.$text.addEventListener('blur', function() {
-    if (AddingCommonNote.$text.value.length + AddingCommonNote.$header.value.length===0)
+AddingCommonNote.$textInput.addEventListener('blur', function() {
+    if (AddingCommonNote.$textInput.value.length + AddingCommonNote.$headerInput.value.length===0)
     uncolorNote(AddingCommonNote);
 })
 
@@ -113,5 +95,5 @@ auto_grow(AddingPriorNote.$header);
 auto_grow(AddingPriorNote.$text);
 auto_grow(AddingCommonNote.$header);
 auto_grow(AddingCommonNote.$text);
-let Priority = document.getElementsByClassName("Priority");
 document.getElementById("priority").appendChild(AddingPriorNote.$note);
+document.getElementById("normal").appendChild(AddingCommonNote.$note);

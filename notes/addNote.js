@@ -92,28 +92,49 @@ function createNoteElements () {
     resultNote.buttons.$addNoteImg.src = tickButtonImgPath;
     resultNote.buttons.$addNote.appendChild(resultNote.buttons.$addNoteImg);
     resultNote.$note.appendChild(resultNote.buttons.$addNote);
+
+    resultNote.$headerOverlay = document.createElement('div');
+    resultNote.$headerOverlay.classList.add('header');
     resultNote.$header = document.createElement('div');
     resultNote.$header.classList.add('header');
+    resultNote.$header.style.position = "absolute";
     resultNote.$headerInput = document.createElement('textarea');
     resultNote.$headerInput.classList.add("header");
-    resultNote.$headerInput.visibility='hidden';
+    resultNote.$headerInput.style.visibility='hidden';
     resultNote.$headerInput.placeholder="Заголовок";
+    resultNote.$headerInput.style.position = "absolute";
     resultNote.$headerInput.value="";
-    resultNote.$header.appendChild(resultNote.$headerInput);
+    resultNote.$headerInput.addEventListener('input', function() {
+        auto_grow(resultNote.$headerInput)
+        resultNote.$headerOverlay.style.height = resultNote.$headerInput.style.height;
+    });
+    resultNote.$headerOverlay.appendChild(resultNote.$headerInput);
+    resultNote.$headerOverlay.appendChild(resultNote.$header);
+    
+    resultNote.$textOverlay = document.createElement('div');
+    resultNote.$textOverlay.classList.add('text');
     resultNote.$text = document.createElement('div');
     resultNote.$text.classList.add("text")
+    resultNote.$text.style.position = 'absolute';
     resultNote.$textInput = document.createElement('textarea');
     resultNote.$textInput.classList.add('text');
     resultNote.$textInput.value="";
-    resultNote.$textInput.visibility='hidden';
+    resultNote.$textInput.style.visibility='hidden';
     resultNote.$textInput.placeholder="Текст заметки";
-    resultNote.$text.appendChild(resultNote.$textInput);
+    resultNote.$textInput.style.position = "absolute";
+    resultNote.$textInput.addEventListener('input', function () {
+        auto_grow(resultNote.$textInput)
+        resultNote.$textOverlay.style.height = resultNote.$textInput.style.height;
+    });
+    resultNote.$textOverlay.appendChild(resultNote.$text);
+    resultNote.$textOverlay.appendChild(resultNote.$textInput);
+
     resultNote.imageSrc = "";
 
     //all service elements
     resultNote.$contentOverlay = document.createElement('div');
-    resultNote.$contentOverlay.appendChild(resultNote.$header);
-    resultNote.$contentOverlay.appendChild(resultNote.$text);
+    resultNote.$contentOverlay.appendChild(resultNote.$headerOverlay);
+    resultNote.$contentOverlay.appendChild(resultNote.$textOverlay);
     resultNote.$contentOverlay.classList.add('contentOverlay');
     resultNote.$imageOverlay = document.createElement('div');
     resultNote.$imageOverlay.classList.add('image');

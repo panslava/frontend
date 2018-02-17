@@ -1,11 +1,10 @@
 function makeNoteEditable (NoteContainer) {
-    NoteContainer.$header.visibility='hidden';
-    NoteContainer.$headerInput.visibility='visible';
-    if (NoteContainer.$header.value === undefined)
-    NoteContainer.$headerInput.value = NoteContainer.$header.value;
-    NoteContainer.$text.visibility='hidden';
-    NoteContainer.$textInput.visibility='visible';
-    NoteContainer.$textInput.value = NoteContainer.$text.value;
+    NoteContainer.$header.style.visibility='hidden';
+    NoteContainer.$headerInput.style.visibility='visible';
+    NoteContainer.$headerInput.innerHTML = NoteContainer.$header.innerHTML;
+    NoteContainer.$text.style.visibility='hidden';
+    NoteContainer.$textInput.style.visibility='visible';
+    NoteContainer.$textInput.value = NoteContainer.$text.innerHTML;
     NoteContainer.buttons.$addNote.style.visibility = 'visible';
     if (NoteContainer.imageSrc!="") NoteContainer.buttons.$deleteImage.style.visibility = 'visible';
     NoteContainer.$actions.style.visibility = 'visible';
